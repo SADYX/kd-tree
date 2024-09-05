@@ -1,0 +1,22 @@
+{
+  "name": "@sadyx/kd-tree",
+  "version": "1.0.0",
+  "description": "K-Dimension Tree in typescript",
+  "main": "index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SADYX",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SADYX/kd-tree"
+  }
+}
