@@ -2,7 +2,7 @@
 
 K-Dimension Tree in typescript.
 
-## Installation
+# Installation
 
 ```
 npm install @sadyx019/kd-tree
@@ -105,3 +105,7 @@ tree.rebuild()
 # Documentation
 
 TODO
+
+# Reference
+
+https://github.com/ubilabs/kd-tree-javascript
