@@ -72,7 +72,7 @@ tree.getNearestByCount({ x: 20, y: 20 }, 3); // get 3 nearest points
  */
 
 // or get points by distance
-tree.getNearestByCount({ x: 20, y: 20 }, 25); // get points in range 25
+tree.getNearestByDistance({ x: 20, y: 20 }, 25); // get points in range 25
 /*
   console.dir
     [
