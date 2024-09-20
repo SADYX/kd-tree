@@ -2,7 +2,7 @@
   "name": "@sadyx/kd-tree",
   "version": "1.0.0",
   "description": "K-Dimension Tree in typescript",
-  "main": "index.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -21,6 +21,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SADYX/kd-tree"
+    "url": "https://github.com/SADYX/kd-tree.git"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
