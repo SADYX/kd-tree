@@ -1,6 +1,6 @@
 # kd-tree
 
-K-Dimension Tree in typescript.
+K-Dimension tree in typescript.
 
 # Installation
 
@@ -11,12 +11,12 @@ npm install @sadyx019/kd-tree
 # Usage
 
 ```ts
-import { KdTree } from '@sadyx019/kd-tree'
+import { KdTree } from '@sadyx019/kd-tree';
 
 interface PointType {
     x: number;
     y: number;
-}
+};
 
 const points = [
     { x: 0, y: 1 },
@@ -53,17 +53,9 @@ const tree = new KdTree(
   );
  */
 
+
 /*** insert point ***/
 tree.insert({ x: 20, y: 20 });
-
-/*** remove point ***/
-const p: PointType = {
-    x: 100,
-    y: 100
-};
-
-tree.remove(p);
-
 
 /*** remove point ***/
 tree.remove({ x: 62, y: 2 });
@@ -93,7 +85,7 @@ tree.getNearestByCount({ x: 20, y: 20 }, 25); // get points in range 25
  */
 
 /*** rebuild tree ***/
-tree.rebuild()
+tree.rebuild();
 
 // or rebuild with some options
 /*
