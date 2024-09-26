@@ -1,7 +1,7 @@
 {
   "name": "@sadyx019/kd-tree",
-  "version": "1.0.2",
-  "description": "K-Dimension Tree in typescript",
+  "version": "1.0.4",
+  "description": "K-Dimension tree in typescript",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "files": [
