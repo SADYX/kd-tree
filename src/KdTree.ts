@@ -75,9 +75,9 @@ class KdTree<T> {
     if (this.root === null || count < 1) return [];
 
     // search queue
-    const queue = new PriorityQueue<T>();
+    const queue = new PriorityQueue<T>((a, b) => a.distance - b.distance);
     // nearest queue
-    const neighours = new PriorityQueue<T>();
+    const neighours = new PriorityQueue<T>((a, b) => b.distance - a.distance);
 
     //
     const getDist = (node: KdNode<T>) => {
@@ -98,11 +98,11 @@ class KdTree<T> {
       // update nearest queue
       if (
         neighours.size() < count
-        || dist < (neighours.peekEnd()?.distance ?? Infinity)
+        || dist < (neighours.peek()?.distance ?? Infinity)
       ) {
         neighours.enqueue({ node: node, distance: dist });
         if (neighours.size() > count) {
-          neighours.pop();
+          neighours.dequeue();
         }
       }
 
@@ -118,17 +118,19 @@ class KdTree<T> {
       // enqueue if the hypersphere intersects with split line. (prune)
       if (
         otherBranch
-        && neighours.peekEnd()
-        && (hyperDist < neighours.peekEnd()!.distance)
+        && neighours.peek()
+        && (hyperDist < neighours.peek()!.distance)
       ) {
         queue.enqueue({ node: otherBranch, distance: hyperDist });
       }
     }
 
-    const result = neighours.getQueue().map((item) => ({
-      data: item.node.data,
-      distance: item.distance,
-    }));
+    const result = neighours
+      .getQueue((a, b) => a.distance - b.distance)
+      .map((item) => ({
+        data: item.node.data,
+        distance: item.distance,
+      }));
 
     return result;
   }
@@ -138,7 +140,7 @@ class KdTree<T> {
     if (this.root === null || maxDistance < 0) return [];
 
     // search queue
-    const queue = new PriorityQueue<T>();
+    const queue = new PriorityQueue<T>((a, b) => a.distance - b.distance);
     // 
     const result: { data: T; distance: number; }[] = [];
 
