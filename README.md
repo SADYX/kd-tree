@@ -10,6 +10,94 @@ npm install @sadyx019/kd-tree
 
 # Usage
 
+### constructor
+```ts
+new KdTree(
+  points: T[],
+  distanceFn: (a: T, b: T) => number,
+  dimensions: ((keyof T) | ((p: T) => number))[],
+  options?: { maxVariance?: boolean }
+)
+```
+| Attribute Name      | Description                                                                                                                                                   |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| points              | Put your points array here                                                                                                                                    |
+| distanceFn          | A function returns distance(number) between the given 2 points                                                                                                |
+| dimensions          | An array includes 2 kinds of items: **point's property name(this property must be a number)** or **a function returns a number**                              |
+| options.maxVariance | (OPTIONAL & DEFAULT: **false**) Set to **true** if you want kd-tree to be built with **maximum variance algorithm**,otherwise points will be splited by **dimension order**.(maxVariance can improve the tree but cost lots of time) |
+
+Return: a KdTree instance
+
+---
+
+### getNearestByCount
+```ts
+getNearestByCount(
+  point: T,
+  count: number
+):{ data: T; distance: number; }[]
+```
+| Attribute Name | Description                           |
+|----------------|---------------------------------------|
+| point          | \<T\>  point                             |
+| count          | The number of nearest points returned |
+
+Return: An **ordered** array includes objects consist of **point data** and **distance number**
+
+---
+
+### getNearestByDistance
+```ts
+getNearestByDistance(
+  point: T,
+  maxDistance: number
+):{ data: T; distance: number; }[]
+```
+| Attribute Name | Description            |
+|----------------|------------------------|
+| point          | \<T\> point              |
+| maxDistance    | The range of searching |
+
+Return: An **ordered** array includes objects consist of **point data** and **distance number**
+
+---
+
+### rebuild
+```ts
+rebuild(
+  options?: { maxVariance?: boolean }
+): void
+```
+| Attribute Name      | Description         |
+|---------------------|---------------------|
+| options.maxVariance | (OPTIONAL & DEFAULT: **false**) Same as **constructor.options** |
+
+---
+
+### insert
+```ts
+insert(point: T): void
+```
+| Attribute Name | Description            |
+|----------------|------------------------|
+| point          | \<T\> point              |
+
+Note: this functiom may imbalance the tree especially built with **maxVariance**
+
+---
+
+### remove
+```ts
+remove(point: T): void
+```
+| Attribute Name | Description            |
+|----------------|------------------------|
+| point          | \<T\> point              |
+
+Note: remove **the first point** that equalFn (only compare **_dimensions_ in constructor**) returns true. This functiom may also imbalance the tree especially built with **maxVariance**
+
+# Example
+
 ```ts
 import { KdTree } from '@sadyx019/kd-tree';
 
@@ -93,10 +181,6 @@ tree.rebuild();
  */
 
 ```
-
-# Documentation
-
-TODO
 
 # Reference
 
